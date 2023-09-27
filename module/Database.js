@@ -16,6 +16,12 @@ class Database {
     return result
   }
 
+  static async find(data, collection) {
+    const result = await database.collection(collection).find(data).toArray()
+
+    return result
+  }
+
   static async findOne(data, collection) {
     const result = await database.collection(collection).findOne(data)
 
@@ -24,6 +30,12 @@ class Database {
 
   static async updateOne(filter, update, collection) {
     const result = await database.collection(collection).updateOne(filter, update)
+
+    return result
+  }
+
+  static async deleteOne(filter, collection) {
+    const result = await database.collection(collection).deleteOne(filter)
 
     return result
   }

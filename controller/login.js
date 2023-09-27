@@ -15,6 +15,7 @@ async function login(req, res, next) {
 
     if (result.loginSuccess) {
       req.session.user = {
+        id: result.id,
         username: result.username,
         email: result.email
       }

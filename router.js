@@ -15,6 +15,8 @@ router.get("/verification/:validationString", registrationController.verifiUserE
 
 router.use(isLoggedin)
 router.get("/todo", todoController.getTodos)
+router.post("/add-todo", todoController.addNew)
+router.post("/delete-todo", todoController.deleteToDo)
 
 router.get("/logout", (req, res) => {
   req.session.destroy(() => {

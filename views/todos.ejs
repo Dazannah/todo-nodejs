@@ -1,4 +1,18 @@
-<%- include('includes/header')%>
-<a href="/logout"><button type="button">Logout</button></a>
+<%- include('includes/header')%> <a href="/logout"><button type="button">Logout</button></a><br /><br />
+<div>
+  <form action="/add-todo" method="post">
+    <label for="new-todo">Add new todo</label>
+    <input type="text" name="new-todo" id="new-todo" />
+    <input type="submit" value="Submit" />
+  </form>
+</div>
+<br />
 
-ToDos <%- include('includes/footer')%>
+<% if(typeof todos != 'undefined'){ todos.forEach(todo=>{%>
+<form action="/delete-todo" method="post">
+  <div><span><%= todo.text %></span> <input type="submit" value="Delete" /></div>
+  <input type="hidden" name="todo-id" value="<%= todo._id %>" />
+</form>
+<br />
+
+<%}) }%> <%- include('includes/footer')%>
