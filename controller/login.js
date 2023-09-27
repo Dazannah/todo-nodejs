@@ -1,4 +1,4 @@
-async function getLogin(req, res, next) {
+async function renderLogin(req, res, next) {
   res.render("login.ejs")
 }
 
@@ -7,6 +7,6 @@ async function login(req, res, next) {
 }
 
 module.exports = {
-  getLogin,
+  renderLogin,
   login
 }
