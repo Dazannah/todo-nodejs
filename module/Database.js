@@ -15,6 +15,18 @@ class Database {
 
     return result
   }
+
+  static async findOne(data, collection) {
+    const result = await database.collection(collection).findOne(data)
+
+    return result
+  }
+
+  static async updateOne(filter, update, collection) {
+    const result = await database.collection(collection).updateOne(filter, update)
+
+    return result
+  }
 }
 
 module.exports = {

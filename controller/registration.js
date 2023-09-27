@@ -1,4 +1,4 @@
-const { RegisterUser } = require("../module/User")
+const { RegisterUser, VerifiUserEmail } = require("../module/User")
 
 function renderRegistration(req, res, next) {
   res.render("registration.ejs")
@@ -7,10 +7,11 @@ function renderRegistration(req, res, next) {
 async function registration(req, res, next) {
   try {
     const registerUser = new RegisterUser(req.body)
-    const result = await registerUser.registrationProcess()
+    const result = await registerUser.startRegistration()
 
     if (result) {
       res.render(`registration.ejs`, {
+        id: result.user.id,
         username: result.user.username,
         email: result.user.email,
         errors: result.errors
@@ -23,7 +24,20 @@ async function registration(req, res, next) {
   }
 }
 
+async function verifiUserEmail(req, res, next) {
+  try {
+    const verifiEmail = new VerifiUserEmail(req.params.validationString)
+    await verifiEmail.verifi()
+
+    res.redirect("/")
+  } catch (err) {
+    //res.redirect("/")
+    console.log(err)
+  }
+}
+
 module.exports = {
   renderRegistration,
-  registration
+  registration,
+  verifiUserEmail
 }

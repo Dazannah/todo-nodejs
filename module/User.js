@@ -3,14 +3,49 @@ const Email = require("./Email")
 const bcrypt = require("bcrypt")
 const crypto = require("crypto")
 
-class User {
+class LoginUser {
   constructor(data) {
     this.data = data
     this.error = []
   }
 
-  getUserData() {
-    return this.data
+  async startLogin() {
+    this.#validateInput()
+    if (this.error.length > 0) return this.#handleError()
+
+    await this.#findUser()
+    if (this.error.length > 0) return this.#handleError()
+
+    await this.#checkPassword()
+    if (this.error.length > 0) return this.#handleError()
+
+    this.#isEmailValidated()
+    if (this.error.length > 0) return this.#handleError()
+
+    return { loginSuccess: true, id: this.foundUser._id.toString(), username: this.foundUser.username, email: this.foundUser.email }
+  }
+
+  #validateInput() {
+    if (this.data.username.trim() === "" || this.data.username == null) this.error.push("Username required.")
+    if (this.data.password.trim() === "" || this.data.password == null) this.error.push("Password required.")
+  }
+
+  async #findUser() {
+    this.foundUser = await Database.findOne({ username: this.data.username }, "users")
+    if (this.foundUser == null) this.error.push("Incorrect username/password.")
+  }
+
+  async #checkPassword() {
+    const result = await bcrypt.compare(this.data.password, this.foundUser.password)
+    if (!result) this.error.push("Incorrect username/password.")
+  }
+
+  #isEmailValidated() {
+    if (!this.foundUser.isValidated) this.error.push("You have to validate your email before login.")
+  }
+
+  #handleError() {
+    return { loginSuccess: false, errors: this.error, username: this.data.username }
   }
 }
 
@@ -20,7 +55,7 @@ class RegisterUser {
     this.error = []
   }
 
-  async registrationProcess() {
+  async startRegistration() {
     this.#validateUserInputs()
     if (this.error.length > 0) return this.#handleError()
 
@@ -97,7 +132,18 @@ class RegisterUser {
   }
 }
 
+class VerifiUserEmail {
+  constructor(validationString) {
+    this.validationString = validationString
+  }
+
+  async verifi() {
+    await Database.updateOne({ validationString: this.validationString }, { $set: { isValidated: true } }, "users")
+  }
+}
+
 module.exports = {
-  User,
-  RegisterUser
+  LoginUser,
+  RegisterUser,
+  VerifiUserEmail
 }
