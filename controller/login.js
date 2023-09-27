@@ -1,6 +1,10 @@
 const { LoginUser } = require("../module/User")
 
 async function renderLogin(req, res, next) {
+  if (req.session.user) {
+    res.redirect("/todo")
+    return
+  }
   res.render("login.ejs")
 }
 

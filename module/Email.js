@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer")
+require("dotenv").config()
 
 class Email {
   constructor(to, from, subject, plainText, htmlText) {
@@ -8,11 +9,11 @@ class Email {
     this.plainText = plainText
     this.htmlText = htmlText
     this.transporter = nodemailer.createTransport({
-      host: "smtp.elasticemail.com",
-      port: 2525,
+      host: process.env.EMAILHOST,
+      port: process.env.EMAILPORT,
       auth: {
-        user: "verification@davidfabian.hu",
-        pass: "2BF7F440292C25B9BDF9750A00C7F628CC98"
+        user: process.env.EMAILUSER,
+        pass: process.env.EMAILPASSWORD
       }
     })
   }

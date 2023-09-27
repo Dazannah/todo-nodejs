@@ -31,7 +31,7 @@ async function verifiUserEmail(req, res, next) {
 
     res.redirect("/")
   } catch (err) {
-    //res.redirect("/")
+    res.redirect("/")
     console.log(err)
   }
 }
