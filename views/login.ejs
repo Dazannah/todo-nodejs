@@ -1,12 +1,14 @@
-<%- include('includes/head')%>
+<%- include('includes/header')%>
 <body>
   <form action="/login" method="POST">
-    <label for="username">Username:</label>
-    <input type="text" name="username" id="username" />
-    <label for="password">Password:</label>
-    <input type="password" name="password" id="password" />
-    <input type="submit" value="Submit" />
+    <label for="username">Username:</label><br />
+    <input type="text" name="username" id="username" /><br />
+    <label for="password">Password:</label><br />
+    <input type="password" name="password" id="password" /><br /><br />
+    <input type="submit" value="Submit" /><br /><br />
+
+    <a href="/registration">Registarion</a>
   </form>
 </body>
 
-<%- include('includes/foot')%>
+<%- include('includes/footer')%>
