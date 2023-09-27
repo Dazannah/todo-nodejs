@@ -1,14 +1,20 @@
 <%- include('includes/header')%>
 <form action="/registration" method="POST">
   <label for="username">Username</label><br />
-  <input type="text" name="username" id="username" /><br />
+  <input type="text" name="username" id="username" value="<%= typeof username != 'undefined' ? username : '' %>" />
+  <br />
   <label for="email">Email address:</label><br />
-  <input type="text" name="email" id="email" /><br />
+  <input type="text" name="email" id="email" value="<%= typeof email != 'undefined' ? email : '' %>" />
+  <br />
   <label for="password">Password:</label><br />
   <input type="password" name="password" id="password" /><br />
   <label for="passwordConfirmation">Confirm your password:</label><br />
   <input type="password" name="passwordConfirmation" id="passwordConfirmation" /><br /><br />
   <input type="submit" value="Submit" /><br /><br />
-  <a href="/login">Login</a>
+  <a href="/login">Login</a><br /><br />
+
+  <% if(typeof errors != 'undefined'){ errors.forEach(error=>{%>
+  <span><%= error %></span><br />
+  <%}) }%>
 </form>
 <%- include('includes/footer')%>
