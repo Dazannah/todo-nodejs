@@ -249,7 +249,6 @@ class ResetPassword {
     }
     const result = await Database.findOneAndUpdate(filter, update, "users")
 
-    console.log(result)
     if (!result.value?.username) {
       this.error.push("Invalid password reset link.")
     }
