@@ -8,9 +8,13 @@
     <script src="/htmx.min.js"></script>
   </head>
   <body>
-    <a href="/"><button className="px-4 py-2 text-white bg-indigo-600 rounded-lg duration-150 hover:bg-indigo-700 active:shadow-lg">Home</button></a>
-    <% if(typeof logedout === "undefined") {%>
-    <a href="/logout"><button className="px-4 py-2 text-white bg-indigo-600 rounded-lg duration-150 hover:bg-indigo-700 active:shadow-lg">Logout</button></a><br /><br />
-    <% } %>
+    <div class="items-center my-5 px-4 max-w-screen-xl mx-auto md:flex md:px-8">
+      <nav class="bg-white w-full border-b md:border-0 md:static">
+        <a href="/"><button class="px-4 py-2 text-white bg-blue-600 rounded-lg duration-150 hover:bg-blue-700 active:shadow-lg">Home</button></a>
+        <% if(typeof logedout === "undefined") {%>
+        <a href="/logout"><button class="px-4 py-2 text-white bg-blue-600 rounded-lg duration-150 hover:bg-blue-700 active:shadow-lg">Logout</button></a><br /><br />
+        <% } %>
+      </nav>
+    </div>
   </body>
 </html>

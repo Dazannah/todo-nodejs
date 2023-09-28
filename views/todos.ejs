@@ -1,11 +1,16 @@
 <%- include('includes/header')%>
-<div>
-  <form>
-    <input type="datetime-local" name="deadline" id="deadline" />
-    <input type="text" name="new-todo" id="new-todo" placeholder="ToDo description" />
-    <button hx-post="/add-todo" hx-target="body">Add ToDo</button>
-  </form>
-</div>
-<br />
+<div class="w-full flex flex-col items-center px-4">
+  <div class="w-full flex flex-col items-center px-4">
+    <h1 class="text-gray-800 text-3xl font-semibold">Add new ToDo</h1>
+    <form>
+      <input type="datetime-local" name="deadline" id="deadline" />
+      <input type="text" name="new-todo" id="new-todo" placeholder="ToDo description" />
+      <button hx-post="/add-todo" hx-target="body" class="px-4 py-2 text-white bg-blue-600 rounded-lg duration-150 hover:bg-blue-700 active:shadow-lg">Add ToDo</button>
+    </form>
+  </div>
+  <br />
 
-<% if(typeof todos != 'undefined'){ todos.forEach(todo=>{%> <%- include('includes/todo', {todo, editable: false})%> <%}) }%> <%- include('includes/footer')%>
+  <h1 class="text-gray-800 text-3xl font-semibold">Your ToDo list</h1>
+  <% if(typeof todos != 'undefined'){ todos.forEach(todo=>{%> <%- include('includes/todo', {todo, editable: false})%> <%}) }%>
+</div>
+<%- include('includes/footer')%>

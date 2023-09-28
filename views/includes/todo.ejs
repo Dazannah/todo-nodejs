@@ -1,19 +1,16 @@
-<div id="wrapper<%= todo._id %>">
-  <form>
-    <input type="datetime-local" name="deadline" id="deadline" value="<%= todo.deadline %>" <%= editable ? "" : "disabled" %> /> <% if(!editable) {%>
-    <span><%= todo.text %></span>
-    <% if(todo.isDone) {%>
-    <span>Done</span>
-    <% } else {%>
-    <button hx-get="/done-todo/<%= todo._id %>" hx-target="body">Done</button>
-    <button hx-get="/edit-todo/<%= todo._id %>" hx-target="#wrapper<%= todo._id %>">Edit</button>
-    <% } %>
-    <button hx-post="/delete-todo" hx-target="body">Delete</button>
-    <% } else {%>
-    <input name="new-todo" type="text" value="<%= todo.text %>" />
-    <button hx-post="/edit-todo" hx-target="body">Done</button>
-    <% } %>
-    <input type="hidden" name="todo-id" value="<%= todo._id %>" />
-  </form>
-  <br />
-</div>
+<form id="wrapper<%= todo._id %>" class="grid my-3 min-w-[50%] max-w-[50%] grid-cols-3 grid-rows-2">
+  <input class="col-span-1 mx-2" type="datetime-local" name="deadline" id="deadline" value="<%= todo.deadline %>" <%= editable ? "" : "disabled" %> /> <% if(!editable) {%>
+  <span class="col-span-2 mx-2"><%= todo.text %></span>
+  <% if(todo.isDone) {%>
+  <span class="mx-3 text-gray-800 text-xl font-semibold">Done</span>
+  <% } else {%>
+  <button hx-get="/done-todo/<%= todo._id %>" hx-target="body" class="mx-1 px-4 py-2 text-white bg-blue-600 rounded-lg duration-150 hover:bg-blue-700 active:shadow-lg">Done</button>
+  <button hx-get="/edit-todo/<%= todo._id %>" hx-target="#wrapper<%= todo._id %>" hx-swap="outerHTML" class="mx-1 px-4 py-2 text-white bg-blue-600 rounded-lg duration-150 hover:bg-blue-700 active:shadow-lg">Edit</button>
+  <% } %>
+  <button hx-post="/delete-todo" hx-target="body" class="mx-1 px-4 py-2 text-white bg-blue-600 rounded-lg duration-150 hover:bg-blue-700 active:shadow-lg">Delete</button>
+  <% } else {%>
+  <input name="new-todo" type="text" value="<%= todo.text %>" />
+  <button hx-post="/edit-todo" hx-target="body" class="mx-1 px-4 py-2 text-white bg-blue-600 rounded-lg duration-150 hover:bg-blue-700 active:shadow-lg">Done</button>
+  <% } %>
+  <input type="hidden" name="todo-id" value="<%= todo._id %>" />
+</form>
