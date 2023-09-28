@@ -34,6 +34,12 @@ class Database {
     return result
   }
 
+  static async findOneAndUpdate(filter, update, collection) {
+    const result = await database.collection(collection).findOneAndUpdate(filter, update)
+
+    return result
+  }
+
   static async deleteOne(filter, collection) {
     const result = await database.collection(collection).deleteOne(filter)
 

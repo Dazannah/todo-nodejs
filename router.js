@@ -8,10 +8,14 @@ const todoController = require("./controller/todo")
 
 router.get("/registration", registrationController.renderRegistration)
 router.post("/registration", registrationController.registration)
+router.get("/verification/:validationString", registrationController.verifiUserEmail)
+router.get("/forgot-password", registrationController.renderForgotPassword)
+router.post("/forgot-password", registrationController.resetPassword)
+router.get("/reset-password/:resetString", registrationController.renderReset)
+router.post("/reset-password/:resetString", registrationController.reset)
 
 router.get("/", loginController.renderLogin)
 router.post("/login", loginController.login)
-router.get("/verification/:validationString", registrationController.verifiUserEmail)
 
 router.use(isLoggedin)
 router.get("/todo", todoController.getTodos)

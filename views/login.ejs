@@ -6,13 +6,10 @@
     <label for="password">Password:</label><br />
     <input type="password" name="password" id="password" /><br /><br />
     <input type="submit" value="Submit" /><br /><br />
-
-    <a href="/registration">Registration</a>
+    <% if(typeof errors != 'undefined'){ errors.forEach(error=>{%>
+    <span><%= error %></span><br />
+    <%}) %> <br /><% }%> <a href="/registration">Registration</a> | <a href="/forgot-password">Reset password</a>
   </form>
-
-  <% if(typeof errors != 'undefined'){ errors.forEach(error=>{%>
-  <span><%= error %></span><br />
-  <%}) }%>
 </body>
 
 <%- include('includes/footer')%>
