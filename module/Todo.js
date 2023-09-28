@@ -40,11 +40,26 @@ class Todo {
     await Database.updateOne(filter, update, "todos")
   }
 
+  async done(todoId) {
+    const filter = {
+      $and: [{ _id: new ObjectId(todoId) }, { userId: new ObjectId(this.userdata.id) }]
+    }
+
+    const update = {
+      $set: {
+        isDone: true
+      }
+    }
+
+    await Database.updateOne(filter, update, "todos")
+  }
+
   async saveNewToDo(todoText, deadline) {
     const dataToSave = {
       userId: new ObjectId(this.userdata.id),
       text: todoText,
-      deadline
+      deadline,
+      isDone: false
     }
 
     await Database.saveOne(dataToSave, "todos")

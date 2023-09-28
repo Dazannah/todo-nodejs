@@ -19,6 +19,7 @@ router.post("/add-todo", todoController.addNew)
 router.post("/delete-todo", todoController.deleteToDo)
 router.get("/edit-todo/:todoid", todoController.getEditTodo)
 router.post("/edit-todo", todoController.saveEdited)
+router.get("/done-todo/:todoid", todoController.markDone)
 
 router.get("/logout", (req, res) => {
   req.session.destroy(() => {

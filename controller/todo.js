@@ -49,10 +49,18 @@ async function saveEdited(req, res, next) {
   res.redirect("/todo")
 }
 
+async function markDone(req, res, next) {
+  const todo = new Todo(req.session.user)
+  await todo.done(req.params.todoid)
+
+  res.redirect("/todo")
+}
+
 module.exports = {
   getTodos,
   addNew,
   deleteToDo,
   getEditTodo,
-  saveEdited
+  saveEdited,
+  markDone
 }
