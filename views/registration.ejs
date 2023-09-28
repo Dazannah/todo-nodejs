@@ -1,15 +1,11 @@
 <%- include('includes/header')%>
 <form action="/registration" method="POST">
-  <label for="username">Username</label><br />
-  <input type="text" name="username" id="username" value="<%= typeof username != 'undefined' ? username : '' %>" />
+  <input type="text" name="username" id="username" value="<%= typeof username != 'undefined' ? username : '' %>" placeholder="Username" />
   <br />
-  <label for="email">Email address:</label><br />
-  <input type="text" name="email" id="email" value="<%= typeof email != 'undefined' ? email : '' %>" />
+  <input type="text" name="email" id="email" value="<%= typeof email != 'undefined' ? email : '' %>" placeholder="Email address" />
   <br />
-  <label for="password">Password:</label><br />
-  <input type="password" name="password" id="password" /><br />
-  <label for="passwordConfirmation">Confirm your password:</label><br />
-  <input type="password" name="passwordConfirmation" id="passwordConfirmation" /><br /><br />
+  <input type="password" name="password" id="password" placeholder="Password" /><br />
+  <input type="password" name="passwordConfirmation" id="passwordConfirmation" placeholder="Confirm your password" /><br /><br />
   <input type="submit" value="Submit" /><br /><br />
   <a href="/login">Login</a><br /><br />
 

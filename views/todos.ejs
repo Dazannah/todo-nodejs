@@ -2,8 +2,7 @@
 <div>
   <form>
     <input type="datetime-local" name="deadline" id="deadline" />
-    <label for="new-todo">Add new todo</label>
-    <input type="text" name="new-todo" id="new-todo" />
+    <input type="text" name="new-todo" id="new-todo" placeholder="ToDo description" />
     <button hx-post="/add-todo" hx-target="body">Add ToDo</button>
   </form>
 </div>
