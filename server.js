@@ -16,9 +16,9 @@ const sessionOptions = session({
 })
 server.use(sessionOptions)
 
+server.use(express.static("public"))
 server.set("view engine", "ejs")
 server.use(express.urlencoded({ extended: false }))
-server.set("public")
 server.use("/", router)
 
 module.exports = server
