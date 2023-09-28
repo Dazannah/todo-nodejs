@@ -12,7 +12,7 @@ async function getTodos(req, res, next) {
 async function addNew(req, res, next) {
   try {
     const todo = new Todo(req.session.user)
-    await todo.saveNewToDo(req.body["new-todo"])
+    await todo.saveNewToDo(req.body["new-todo"], req.body["deadline"])
 
     res.redirect("/todo")
   } catch (err) {

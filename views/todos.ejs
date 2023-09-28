@@ -1,18 +1,21 @@
 <%- include('includes/header')%> <a href="/logout"><button type="button">Logout</button></a><br /><br />
 <div>
-  <form action="/add-todo" method="post">
+  <form>
+    <input type="datetime-local" name="deadline" id="deadline" />
     <label for="new-todo">Add new todo</label>
     <input type="text" name="new-todo" id="new-todo" />
-    <input type="submit" value="Submit" />
+    <button hx-post="/add-todo" hx-target="body">Add ToDo</button>
   </form>
 </div>
 <br />
 
 <% if(typeof todos != 'undefined'){ todos.forEach(todo=>{%>
-<form action="/delete-todo" method="post">
-  <div><span><%= todo.text %></span> <input type="submit" value="Delete" /></div>
+<form>
+  <input type="datetime-local" name="deadline" id="deadline" value="<%= todo.deadline %>" disabled />
+  <span><%= todo.text %></span> <button hx-post="/done-todo" hx-target="body">Done</button><button hx-get="/edit-todo" hx-target="body">Edit</button><button hx-post="/delete-todo" hx-target="body">Delete</button>
   <input type="hidden" name="todo-id" value="<%= todo._id %>" />
 </form>
+
 <br />
 
 <%}) }%> <%- include('includes/footer')%>

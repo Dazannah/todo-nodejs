@@ -15,10 +15,11 @@ class Todo {
     return result
   }
 
-  async saveNewToDo(todoText) {
+  async saveNewToDo(todoText, deadline) {
     const dataToSave = {
       userId: new ObjectId(this.userdata.id),
-      text: todoText
+      text: todoText,
+      deadline
     }
 
     await Database.saveOne(dataToSave, "todos")
