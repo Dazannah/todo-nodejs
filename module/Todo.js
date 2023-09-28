@@ -15,6 +15,31 @@ class Todo {
     return result
   }
 
+  async getOneToDo(todoId) {
+    const filter = {
+      $and: [{ _id: new ObjectId(todoId) }, { userId: new ObjectId(this.userdata.id) }]
+    }
+
+    const result = await Database.findOne(filter, "todos")
+
+    return result
+  }
+
+  async updateOne(data) {
+    const filter = {
+      $and: [{ _id: new ObjectId(data["todo-id"]) }, { userId: new ObjectId(this.userdata.id) }]
+    }
+
+    const update = {
+      $set: {
+        deadline: data.deadline,
+        text: data["new-todo"]
+      }
+    }
+
+    await Database.updateOne(filter, update, "todos")
+  }
+
   async saveNewToDo(todoText, deadline) {
     const dataToSave = {
       userId: new ObjectId(this.userdata.id),

@@ -7,4 +7,9 @@
     <script src="/htmx.min.js"></script>
   </head>
   <body>
+    <a href="/"><button type="button">Home</button></a>
+    <% if(typeof logedout === "undefined") {%>
+    <a href="/logout"><button type="button">Logout</button></a><br /><br />
+    <% } %>
+  </body>
 </html>
